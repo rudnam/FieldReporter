@@ -50,15 +50,19 @@ def add_tags(col: Collection) -> None:
     
     update_config()
 
-    # Get untagged notes with the source field not-empty
-    notes = [col.get_note(note_id) for note_id in col.find_notes(f"tag:none {SOURCE_FIELD}:_*")]
+    # Get all notes with the source field not-empty
+    notes = [col.get_note(note_id) for note_id in col.find_notes(f"{SOURCE_FIELD}:_*")]
 
     for note in notes:
         # Attempt to use replacements
-        tag = apply_replacements(note[SOURCE_FIELD]).replace(" ", "⠀")
+        tag = apply_replacements(note[SOURCE_FIELD]).replace(" ", "⠀").replace("　","⠀")
 
         # Add tags
-        note.add_tag(tag)
+        for i in tag.split("$"):
+            note.add_tag(i)
+
+        # Wipe Source Field
+        note[SOURCE_FIELD] = ""
 
     # Apply changes
     return col.update_notes(notes)
