@@ -33,15 +33,13 @@ def remove_suffixes(field: str) -> str:
     
     return field
 
-# Swaps based on the first found replacement
+# Replaces occurrence of substring
 def apply_replacements(original: str) -> str:
     stripped = remove_suffixes(remove_prefixes(original))
-    if stripped in REPLACEMENTS:
-        return REPLACEMENTS[stripped]
-    elif original in REPLACEMENTS:
-        return REPLACEMENTS[original]
-    else:
-        return stripped
+    for replacement in REPLACEMENTS:
+        stripped = stripped.replace(replacement,REPLACEMENTS[replacement])
+        
+    return stripped
 
 # Adds tags via the source field
 def add_tags(col: Collection) -> None:
