@@ -9,6 +9,6 @@ Extension on AnkiWeb (OUTDATED) - https://ankiweb.net/shared/info/757527607
 
 ### Fork Changes
 
-- Split tags by `$` character
+- Split tags by spaces
 - Replacements replace occurrence of specified substring instead
-- Detect whitespace character previously undetected
+- Take into account letter casing when adding frequencies
