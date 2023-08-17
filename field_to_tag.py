@@ -53,10 +53,10 @@ def add_tags(col: Collection) -> None:
 
     for note in notes:
         # Attempt to use replacements
-        tag = apply_replacements(note[SOURCE_FIELD]).replace(" ", "⠀").replace("　","⠀")
+        tags = apply_replacements(note[SOURCE_FIELD])
 
         # Add tags
-        for i in tag.split("$"):
+        for i in tags.split(" "):
             note.add_tag(i)
 
         # Wipe Source Field

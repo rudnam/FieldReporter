@@ -27,10 +27,10 @@ else:
     FREQUENCY_DATA = None
 
 def is_same_kana(word: str, sample: str) -> bool:
-    return word == sample
+    return word.lower() == sample.lower()
 
 def is_same_word(word: str, word_reading: str, sample: str, sample_reading: str) -> bool:
-    return word == sample and word_reading == sample_reading
+    return word.lower() == sample.lower() and word_reading.lower() == sample_reading.lower()
 
 def populate_frequency(col: Collection) -> None:
     if "add_frequencies" not in mw.addonManager.getConfig(__name__) or FREQUENCY_DATA == None:
